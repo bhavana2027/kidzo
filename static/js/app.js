@@ -306,8 +306,6 @@ class VoiceManager {
 let voiceManager;
 document.addEventListener('DOMContentLoaded', function() {
     voiceManager = new VoiceManager();
+    window.voiceManager = voiceManager;
     console.log('Voice Manager initialized');
 });
-
-// Export for global use
-window.voiceManager = voiceManager;
