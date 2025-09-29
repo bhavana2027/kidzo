@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="user-language" content="{{ language_preference }}">
     <title>{{ module_data.title }} - Learning Module</title>
     <style>
         body {
@@ -96,19 +97,34 @@
                 </div>
                 
                 {% if lesson.content %}
-                <div class="lesson-content" data-speak-text="{{ lesson.content.english if lesson.content.english else lesson.content }}">
-                    {{ lesson.content.english if lesson.content.english else lesson.content }}
+                <div class="lesson-content" data-speak-text="{{ lesson.content[language_preference] if lesson.content[language_preference] else lesson.content.english if lesson.content.english else lesson.content }}">
+                    {{ lesson.content[language_preference] if lesson.content[language_preference] else lesson.content.english if lesson.content.english else lesson.content }}
                 </div>
                 {% endif %}
                 
                 {% if lesson.type == 'rhyme' %}
                 <div class="rhyme-container">
-                    <div class="lesson-content" data-speak-text="{{ lesson.rhyme.english if lesson.rhyme.english else lesson.rhyme }}">
-                        {{ lesson.rhyme.english if lesson.rhyme.english else lesson.rhyme }}
+                    {% set rhyme_text = lesson.rhyme[language_preference] if lesson.rhyme[language_preference] else lesson.rhyme.english if lesson.rhyme.english else lesson.rhyme %}
+                    <div class="lesson-content" data-speak-text="{{ rhyme_text }}">
+                        {{ rhyme_text }}
                     </div>
                     <div class="sing-along-controls">
                         <button class="listen-btn" onclick="singAlong('{{ lesson.id }}')">🎵 Sing Along</button>
                         <small>Sing along with the rhythm!</small>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if lesson.type == 'story' %}
+                <div class="story-container" style="background: #e8f4fd; border: 2px solid #007bff; border-radius: 15px; padding: 20px; margin: 20px 0;">
+                    {% set story_text = lesson.story[language_preference] if lesson.story[language_preference] else lesson.story.english if lesson.story.english else lesson.story %}
+                    <div class="story-content" data-speak-text="{{ story_text }}" style="font-size: 1.1em; line-height: 1.8; text-align: justify;">
+                        {{ story_text }}
+                    </div>
+                    <div class="story-controls" style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                        <button class="listen-btn" onclick="readStory('{{ lesson.id }}')">📖 Read Story</button>
+                        <button class="listen-btn" onclick="pauseStory()" style="background: #ffc107;">⏸️ Pause</button>
+                        <button class="listen-btn" onclick="stopStory()" style="background: #dc3545;">⏹️ Stop</button>
                     </div>
                 </div>
                 {% endif %}
@@ -119,8 +135,9 @@
                     {% for example in lesson.examples %}
                     <div class="example" style="margin: 10px 0; padding: 10px; background: #e8f5e8; border-radius: 10px;">
                         <span style="font-size: 2em; margin-right: 10px;">{{ example.emoji if example.emoji else '✨' }}</span>
-                        <span data-speak-text="{{ example.text }}">{{ example.text }}</span>
-                        <button class="listen-btn" onclick="speakText('{{ example.text }}')">🔊</button>
+                        {% set example_text = example.text[language_preference] if example.text[language_preference] else example.text.english if example.text.english else example.text %}
+                        <span data-speak-text="{{ example_text }}">{{ example_text }}</span>
+                        <button class="listen-btn" onclick="speakText('{{ example_text }}')">🔊</button>
                     </div>
                     {% endfor %}
                 </div>
@@ -182,6 +199,30 @@
                 const text = rhymeElement.dataset.speakText;
                 // Slower rate for singing along
                 window.voiceManager.speak(text, { rate: 0.6, pitch: 1.3 });
+            }
+        }
+        
+        function readStory(lessonId) {
+            const lesson = document.getElementById('lesson-' + lessonId);
+            if (!lesson || !window.voiceManager) return;
+            
+            const storyElement = lesson.querySelector('.story-container [data-speak-text]');
+            if (storyElement) {
+                const text = storyElement.dataset.speakText;
+                // Storytelling pace - slower and more dramatic
+                window.voiceManager.speak(text, { rate: 0.7, pitch: 1.1 });
+            }
+        }
+        
+        function pauseStory() {
+            if (window.voiceManager) {
+                window.voiceManager.pause();
+            }
+        }
+        
+        function stopStory() {
+            if (window.voiceManager) {
+                window.voiceManager.stop();
             }
         }
         

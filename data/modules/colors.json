@@ -8,19 +8,37 @@
       "title": "Red - The Color of Strawberries",
       "type": "color",
       "content": {
-        "english": "Red is a warm and exciting color! You can see red in strawberries, apples, and fire trucks."
+        "english": "Red is a warm and exciting color! You can see red in strawberries, apples, and fire trucks.",
+        "hindi": "लाल एक गर्म और रोमांचक रंग है! आप स्ट्रॉबेरी, सेब और फायर ट्रक में लाल रंग देख सकते हैं।",
+        "kannada": "ಕೆಂಪು ಒಂದು ಬೆಚ್ಚಗಿನ ಮತ್ತು ರೋಮಾಂಚಕ ರಂಗ! ನೀವು ಸ್ಟ್ರಾಬೆರಿ, ಸೇಬು ಮತ್ತು ಅಗ್ನಿಶಾಮಕ ಟ್ರಕ್‌ನಲ್ಲಿ ಕೆಂಪು ನೋಡಬಹುದು।",
+        "telugu": "ఎరుపు ఒక వెచ్చని మరియు ఉత్తేజకరమైన రంగు! మీరు స్ట్రాబెర్రీలు, ఆపిల్స్ మరియు ఫైర్ ట్రక్కులలో ఎరుపు రంగును చూడవచ్చు।"
       },
       "examples": [
         {
-          "text": "Red strawberry",
+          "text": {
+            "english": "Red strawberry",
+            "hindi": "लाल स्ट्रॉबेरी",
+            "kannada": "ಕೆಂಪು ಸ್ಟ್ರಾಬೆರಿ",
+            "telugu": "ఎరుపు స్ట్రాబెర్రీ"
+          },
           "emoji": "🍓"
         },
         {
-          "text": "Red apple",
+          "text": {
+            "english": "Red apple",
+            "hindi": "लाल सेब",
+            "kannada": "ಕೆಂಪು ಸೇಬು",
+            "telugu": "ఎరుపు ఆపిల్"
+          },
           "emoji": "🍎"
         },
         {
-          "text": "Red fire truck",
+          "text": {
+            "english": "Red fire truck",
+            "hindi": "लाल फायर ट्रक",
+            "kannada": "ಕೆಂಪು ಅಗ್ನಿಶಾಮಕ ಟ್ರಕ್",
+            "telugu": "ఎరుపు ఫైర్ ట్రక్"
+          },
           "emoji": "🚒"
         }
       ]
@@ -30,19 +48,37 @@
       "title": "Blue - The Color of the Sky",
       "type": "color",
       "content": {
-        "english": "Blue is a cool and calming color! You can see blue in the sky, ocean, and blueberries."
+        "english": "Blue is a cool and calming color! You can see blue in the sky, ocean, and blueberries.",
+        "hindi": "नीला एक ठंडा और शांत करने वाला रंग है! आप आकाश, समुद्र और ब्लूबेरी में नीला देख सकते हैं।",
+        "kannada": "ನೀಲಿ ಒಂದು ತಂಪಾದ ಮತ್ತು ಶಾಂತಗೊಳಿಸುವ ರಂಗ! ನೀವು ಆಕಾಶ, ಸಮುದ್ರ ಮತ್ತು ಬ್ಲೂಬೆರ್ರಿಗಳಲ್ಲಿ ನೀಲಿ ನೋಡಬಹುದು।",
+        "telugu": "నీలం ఒక చల్లని మరియు ప్రశాంతమైన రంగు! మీరు ఆకాశం, సముద్రం మరియు బ్లూబెర్రీలలో నీలం రంగును చూడవచ్చు।"
       },
       "examples": [
         {
-          "text": "Blue sky",
+          "text": {
+            "english": "Blue sky",
+            "hindi": "नीला आकाश",
+            "kannada": "ನೀಲಿ ಆಕಾಶ",
+            "telugu": "నీలి ఆకాశం"
+          },
           "emoji": "🌌"
         },
         {
-          "text": "Blue ocean",
+          "text": {
+            "english": "Blue ocean",
+            "hindi": "नीला समुद्र",
+            "kannada": "ನೀಲಿ ಸಮುದ್ರ",
+            "telugu": "నీలి సముద్రం"
+          },
           "emoji": "🌊"
         },
         {
-          "text": "Blue whale",
+          "text": {
+            "english": "Blue whale",
+            "hindi": "नीली व्हेल",
+            "kannada": "ನೀಲಿ ತಿಮಿಂಗಿಲ",
+            "telugu": "నీలి తిమింగలం"
+          },
           "emoji": "🐋"
         }
       ]
@@ -52,19 +88,37 @@
       "title": "Yellow - The Color of Sunshine",
       "type": "color",
       "content": {
-        "english": "Yellow is a bright and happy color! You can see yellow in the sun, bananas, and sunflowers."
+        "english": "Yellow is a bright and happy color! You can see yellow in the sun, bananas, and sunflowers.",
+        "hindi": "पीला एक चमकदार और खुशी का रंग है! आप सूरज, केले और सूरजमुखी में पीला देख सकते हैं।",
+        "kannada": "ಹಳದಿ ಒಂದು ಪ್ರಕಾಶಮಾನ ಮತ್ತು ಸಂತೋಷದ ರಂಗ! ನೀವು ಸೂರ್ಯ, ಬಾಳೆಹಣ್ಣು ಮತ್ತು ಸೂರ್ಯಕಾಂತಿಗಳಲ್ಲಿ ಹಳದಿ ನೋಡಬಹುದು।",
+        "telugu": "పసుపు ఒక ప్రకాశవంతమైన మరియు సంతోషకరమైన రంగు! మీరు సూర్యుడు, అరటిపండ్లు మరియు సూర్యకాంతులలో పసుపు రంగును చూడవచ్చు।"
       },
       "examples": [
         {
-          "text": "Yellow sun",
+          "text": {
+            "english": "Yellow sun",
+            "hindi": "पीला सूरज",
+            "kannada": "ಹಳದಿ ಸೂರ್ಯ",
+            "telugu": "పసుపు సూర్యుడు"
+          },
           "emoji": "☀️"
         },
         {
-          "text": "Yellow banana",
+          "text": {
+            "english": "Yellow banana",
+            "hindi": "पीला केला",
+            "kannada": "ಹಳದಿ ಬಾಳೆಹಣ್ಣು",
+            "telugu": "పసుపు అరటిపండు"
+          },
           "emoji": "🍌"
         },
         {
-          "text": "Yellow sunflower",
+          "text": {
+            "english": "Yellow sunflower",
+            "hindi": "पीला सूरजमुखी",
+            "kannada": "ಹಳದಿ ಸೂರ್ಯಕಾಂತಿ",
+            "telugu": "పసుపు సూర్యకాంతి"
+          },
           "emoji": "🌻"
         }
       ]

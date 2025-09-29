@@ -38,14 +38,35 @@ class VoiceManager {
         this.voices = this.synth.getVoices();
         console.log('Available voices:', this.voices.length);
         
-        // Try to find a child-friendly voice
-        const preferredVoices = this.voices.filter(voice => 
-            voice.lang.startsWith('en') && 
-            (voice.name.includes('female') || voice.name.includes('Google'))
+        // Get user's language preference from meta tag or default to english
+        this.userLanguage = document.querySelector('meta[name="user-language"]')?.content || 'english';
+        
+        // Map language preferences to voice language codes
+        const languageMap = {
+            'english': 'en',
+            'hindi': 'hi',
+            'kannada': 'kn',
+            'telugu': 'te'
+        };
+        
+        const targetLang = languageMap[this.userLanguage] || 'en';
+        
+        // Try to find a voice for the user's language
+        let preferredVoices = this.voices.filter(voice => 
+            voice.lang.startsWith(targetLang)
         );
+        
+        // If no voice found for the specific language, fall back to English
+        if (preferredVoices.length === 0) {
+            preferredVoices = this.voices.filter(voice => 
+                voice.lang.startsWith('en') && 
+                (voice.name.includes('female') || voice.name.includes('Google'))
+            );
+        }
         
         if (preferredVoices.length > 0) {
             this.settings.voiceIndex = this.voices.indexOf(preferredVoices[0]);
+            console.log('Selected voice:', preferredVoices[0].name, 'for language:', this.userLanguage);
         }
     }
     
