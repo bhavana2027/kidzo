@@ -1,0 +1,77 @@
+{
+  "title": "Colors",
+  "icon": "🌈",
+  "description": "Learn about beautiful colors!",
+  "lessons": [
+    {
+      "id": "red",
+      "title": "Red - The Color of Strawberries",
+      "type": "color",
+      "content": {
+        "english": "Red is a warm and exciting color! You can see red in strawberries, apples, and fire trucks."
+      },
+      "examples": [
+        {
+          "text": "Red strawberry",
+          "emoji": "🍓"
+        },
+        {
+          "text": "Red apple",
+          "emoji": "🍎"
+        },
+        {
+          "text": "Red fire truck",
+          "emoji": "🚒"
+        }
+      ]
+    },
+    {
+      "id": "blue",
+      "title": "Blue - The Color of the Sky",
+      "type": "color",
+      "content": {
+        "english": "Blue is a cool and calming color! You can see blue in the sky, ocean, and blueberries."
+      },
+      "examples": [
+        {
+          "text": "Blue sky",
+          "emoji": "🌌"
+        },
+        {
+          "text": "Blue ocean",
+          "emoji": "🌊"
+        },
+        {
+          "text": "Blue whale",
+          "emoji": "🐋"
+        }
+      ]
+    },
+    {
+      "id": "yellow",
+      "title": "Yellow - The Color of Sunshine",
+      "type": "color",
+      "content": {
+        "english": "Yellow is a bright and happy color! You can see yellow in the sun, bananas, and sunflowers."
+      },
+      "examples": [
+        {
+          "text": "Yellow sun",
+          "emoji": "☀️"
+        },
+        {
+          "text": "Yellow banana",
+          "emoji": "🍌"
+        },
+        {
+          "text": "Yellow sunflower",
+          "emoji": "🌻"
+        }
+      ]
+    }
+  ],
+  "badge": {
+    "name": "Color Expert",
+    "icon": "🌈"
+  }
+}

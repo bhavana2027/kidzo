@@ -1,0 +1,44 @@
+{
+  "title": "Rhymes",
+  "icon": "🎵",
+  "description": "Sing along with fun rhymes!",
+  "lessons": [
+    {
+      "id": "twinkle",
+      "title": "Twinkle, Twinkle, Little Star",
+      "type": "rhyme",
+      "content": {
+        "english": "This is a classic lullaby about a little star!"
+      },
+      "rhyme": {
+        "english": "Twinkle, twinkle, little star,\nHow I wonder what you are!\nUp above the world so high,\nLike a diamond in the sky.\nTwinkle, twinkle, little star,\nHow I wonder what you are!"
+      }
+    },
+    {
+      "id": "wheels",
+      "title": "The Wheels on the Bus",
+      "type": "rhyme",
+      "content": {
+        "english": "A fun song about a bus and all the sounds it makes!"
+      },
+      "rhyme": {
+        "english": "The wheels on the bus go round and round,\nRound and round, round and round.\nThe wheels on the bus go round and round,\nAll through the town!"
+      }
+    },
+    {
+      "id": "baa",
+      "title": "Baa, Baa, Black Sheep",
+      "type": "rhyme",
+      "content": {
+        "english": "A sweet rhyme about a helpful black sheep!"
+      },
+      "rhyme": {
+        "english": "Baa, baa, black sheep,\nHave you any wool?\nYes sir, yes sir,\nThree bags full!"
+      }
+    }
+  ],
+  "badge": {
+    "name": "Singing Star",
+    "icon": "🎵"
+  }
+}
