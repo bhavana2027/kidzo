@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ module_data.title }} - Learning Module</title>
+    <script src="/static/js/app.js"></script>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .lesson {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+        }
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .lesson-title {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .lesson-content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover {
+            background: #5a6268;
+        }
+        .rhyme-container {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .sing-along-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="location.href='/dashboard'">← Back to Dashboard</button>
+        
+        <div class="header">
+            <h1>{{ module_data.icon if module_data.icon else '📚' }} {{ module_data.title or 'Learning Module' }}</h1>
+            <p>Hi {{ nickname }}! {{ avatar | avatar_emoji }} Let's learn together!</p>
+        </div>
+        
+        {% if module_data.lessons %}
+            {% for lesson in module_data.lessons %}
+            <div class="lesson" id="lesson-{{ lesson.id }}">
+                <div class="lesson-header">
+                    <div class="lesson-title">{{ lesson.title }}</div>
+                    <button class="listen-btn" onclick="speakLesson('{{ lesson.id }}')">🔊 Listen</button>
+                </div>
+                
+                {% if lesson.content %}
+                <div class="lesson-content" data-speak-text="{{ lesson.content.english if lesson.content.english else lesson.content }}">
+                    {{ lesson.content.english if lesson.content.english else lesson.content }}
+                </div>
+                {% endif %}
+                
+                {% if lesson.type == 'rhyme' %}
+                <div class="rhyme-container">
+                    <div class="lesson-content" data-speak-text="{{ lesson.rhyme.english if lesson.rhyme.english else lesson.rhyme }}">
+                        {{ lesson.rhyme.english if lesson.rhyme.english else lesson.rhyme }}
+                    </div>
+                    <div class="sing-along-controls">
+                        <button class="listen-btn" onclick="singAlong('{{ lesson.id }}')">🎵 Sing Along</button>
+                        <small>Sing along with the rhythm!</small>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if lesson.examples %}
+                <div class="examples">
+                    <h3>Examples:</h3>
+                    {% for example in lesson.examples %}
+                    <div class="example" style="margin: 10px 0; padding: 10px; background: #e8f5e8; border-radius: 10px;">
+                        <span style="font-size: 2em; margin-right: 10px;">{{ example.emoji if example.emoji else '✨' }}</span>
+                        <span data-speak-text="{{ example.text }}">{{ example.text }}</span>
+                        <button class="listen-btn" onclick="speakText('{{ example.text }}')">🔊</button>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="lesson">
+                <div class="lesson-title">Welcome to Learning!</div>
+                <div class="lesson-content">
+                    This module is being prepared for you. Come back soon for amazing lessons!
+                </div>
+            </div>
+        {% endif %}
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="listen-btn" onclick="location.href='/dashboard'" style="background: #28a745; padding: 15px 30px; font-size: 1.2em;">
+                🏠 Back to Dashboard
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Wait for voice manager to be ready
+        setTimeout(() => {
+            if (window.voiceManager) {
+                console.log('Voice manager ready for module');
+            }
+        }, 1000);
+        
+        function speakLesson(lessonId) {
+            const lesson = document.getElementById('lesson-' + lessonId);
+            if (!lesson || !window.voiceManager) return;
+            
+            const textElements = lesson.querySelectorAll('[data-speak-text]');
+            let fullText = '';
+            
+            textElements.forEach(element => {
+                fullText += element.dataset.speakText + '. ';
+            });
+            
+            if (fullText.trim()) {
+                window.voiceManager.speak(fullText.trim());
+            }
+        }
+        
+        function speakText(text) {
+            if (window.voiceManager && text) {
+                window.voiceManager.speak(text);
+            }
+        }
+        
+        function singAlong(lessonId) {
+            const lesson = document.getElementById('lesson-' + lessonId);
+            if (!lesson || !window.voiceManager) return;
+            
+            const rhymeElement = lesson.querySelector('.rhyme-container [data-speak-text]');
+            if (rhymeElement) {
+                const text = rhymeElement.dataset.speakText;
+                // Slower rate for singing along
+                window.voiceManager.speak(text, { rate: 0.6, pitch: 1.3 });
+            }
+        }
+        
+        // Auto-add listen buttons to existing content
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.voiceManager) {
+                    // Add listen buttons to lesson content that doesn't have them
+                    document.querySelectorAll('.lesson-content[data-speak-text]').forEach(element => {
+                        if (!element.parentNode.querySelector('.listen-btn')) {
+                            const text = element.dataset.speakText;
+                            if (text && text.trim()) {
+                                window.voiceManager.addListenButton(element.parentNode, text, { icon: '🔊 Listen' });
+                            }
+                        }
+                    });
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

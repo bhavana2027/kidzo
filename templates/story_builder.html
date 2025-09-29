@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Builder</title>
+    <script src="/static/js/app.js"></script>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .story-form {
+            display: grid;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .form-group {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .form-group h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .option-card {
+            background: white;
+            border: 3px solid transparent;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-card:hover,
+        .option-card.selected {
+            border-color: #4ecdc4;
+            transform: scale(1.02);
+        }
+        .option-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .option-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .option-desc {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .story-title-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #4ecdc4;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-family: 'Comic Sans MS', cursive;
+        }
+        .create-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 1.3em;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: transform 0.2s;
+        }
+        .create-btn:hover {
+            transform: scale(1.05);
+        }
+        .create-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .story-display {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            display: none;
+        }
+        .story-content {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+        .story-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover {
+            background: #5a6268;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="location.href='/dashboard'">← Back to Dashboard</button>
+        
+        <div class="header">
+            <h1>✨ Story Builder ✨</h1>
+            <p>Create your own magical story!</p>
+        </div>
+        
+        <div class="story-form" id="storyForm">
+            <div class="form-group">
+                <h3>📝 Story Title</h3>
+                <input type="text" id="storyTitle" class="story-title-input" placeholder="What's your story called?" required>
+            </div>
+            
+            <div class="form-group">
+                <h3>🦸 Choose Your Hero</h3>
+                <div class="options-grid" id="characterOptions">
+                    <div class="option-card" data-character="brave-knight">
+                        <div class="option-icon">⚔️</div>
+                        <div class="option-title">Brave Knight</div>
+                        <div class="option-desc">A courageous warrior</div>
+                    </div>
+                    <div class="option-card" data-character="wise-wizard">
+                        <div class="option-icon">🧙‍♂️</div>
+                        <div class="option-title">Wise Wizard</div>
+                        <div class="option-desc">A magical spellcaster</div>
+                    </div>
+                    <div class="option-card" data-character="friendly-dragon">
+                        <div class="option-icon">🐉</div>
+                        <div class="option-title">Friendly Dragon</div>
+                        <div class="option-desc">A kind flying friend</div>
+                    </div>
+                    <div class="option-card" data-character="clever-fox">
+                        <div class="option-icon">🦊</div>
+                        <div class="option-title">Clever Fox</div>
+                        <div class="option-desc">A smart woodland friend</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <h3>🏞️ Choose Your Setting</h3>
+                <div class="options-grid" id="settingOptions">
+                    <div class="option-card" data-setting="magical-forest">
+                        <div class="option-icon">🌲</div>
+                        <div class="option-title">Magical Forest</div>
+                        <div class="option-desc">Enchanted woodland</div>
+                    </div>
+                    <div class="option-card" data-setting="floating-castle">
+                        <div class="option-icon">🏰</div>
+                        <div class="option-title">Floating Castle</div>
+                        <div class="option-desc">Castle in the clouds</div>
+                    </div>
+                    <div class="option-card" data-setting="underwater-city">
+                        <div class="option-icon">🌊</div>
+                        <div class="option-title">Underwater City</div>
+                        <div class="option-desc">Deep ocean kingdom</div>
+                    </div>
+                    <div class="option-card" data-setting="space-station">
+                        <div class="option-icon">🚀</div>
+                        <div class="option-title">Space Station</div>
+                        <div class="option-desc">Among the stars</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <h3>🎯 Choose Your Adventure</h3>
+                <div class="options-grid" id="plotOptions">
+                    <div class="option-card" data-plot="rescue-mission">
+                        <div class="option-icon">🆘</div>
+                        <div class="option-title">Rescue Mission</div>
+                        <div class="option-desc">Save someone in need</div>
+                    </div>
+                    <div class="option-card" data-plot="treasure-hunt">
+                        <div class="option-icon">💎</div>
+                        <div class="option-title">Treasure Hunt</div>
+                        <div class="option-desc">Find hidden treasure</div>
+                    </div>
+                    <div class="option-card" data-plot="friendship-quest">
+                        <div class="option-icon">❤️</div>
+                        <div class="option-title">Friendship Quest</div>
+                        <div class="option-desc">Make new friends</div>
+                    </div>
+                    <div class="option-card" data-plot="learning-journey">
+                        <div class="option-icon">📚</div>
+                        <div class="option-title">Learning Journey</div>
+                        <div class="option-desc">Discover new things</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="create-btn" id="createStoryBtn" onclick="createStory()">🎨 Create My Story!</button>
+        </div>
+        
+        <div class="loading" id="loadingMessage" style="display: none;">
+            ✨ Creating your magical story... ✨
+        </div>
+        
+        <div class="story-display" id="storyDisplay">
+            <h2 id="storyDisplayTitle">Your Amazing Story</h2>
+            <div class="story-content" id="storyContent"></div>
+            <div class="story-controls">
+                <button class="listen-btn" onclick="readStoryAloud()">📖 Read Aloud</button>
+                <button class="listen-btn" onclick="pauseStory()">⏸️ Pause</button>
+                <button class="listen-btn" onclick="stopStory()">⏹️ Stop</button>
+                <button class="create-btn" onclick="startNewStory()">✨ Create New Story</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedCharacter = null;
+        let selectedSetting = null;
+        let selectedPlot = null;
+        let currentStory = null;
+        
+        // Selection handling
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const parent = this.parentNode;
+                parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                if (this.dataset.character) {
+                    selectedCharacter = this.dataset.character;
+                } else if (this.dataset.setting) {
+                    selectedSetting = this.dataset.setting;
+                } else if (this.dataset.plot) {
+                    selectedPlot = this.dataset.plot;
+                }
+                
+                updateCreateButton();
+            });
+        });
+        
+        function updateCreateButton() {
+            const btn = document.getElementById('createStoryBtn');
+            const title = document.getElementById('storyTitle').value.trim();
+            
+            if (title && selectedCharacter && selectedSetting && selectedPlot) {
+                btn.disabled = false;
+                btn.style.background = '#28a745';
+            } else {
+                btn.disabled = true;
+                btn.style.background = '#6c757d';
+            }
+        }
+        
+        document.getElementById('storyTitle').addEventListener('input', updateCreateButton);
+        
+        async function createStory() {
+            const title = document.getElementById('storyTitle').value.trim();
+            
+            if (!title || !selectedCharacter || !selectedSetting || !selectedPlot) {
+                alert('Please fill in all fields and make all selections!');
+                return;
+            }
+            
+            document.getElementById('loadingMessage').style.display = 'block';
+            document.getElementById('storyForm').style.display = 'none';
+            
+            try {
+                // Create a simple story template since we don't have the backend story generation
+                currentStory = generateSimpleStory(title, selectedCharacter, selectedSetting, selectedPlot);
+                
+                displayStory(currentStory);
+            } catch (error) {
+                console.error('Error creating story:', error);
+                alert('Something went wrong creating your story. Please try again!');
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('storyForm').style.display = 'grid';
+            }
+        }
+        
+        function generateSimpleStory(title, character, setting, plot) {
+            const characterNames = {
+                'brave-knight': 'Sir Brave',
+                'wise-wizard': 'Wizard Wise',
+                'friendly-dragon': 'Dragon Spark',
+                'clever-fox': 'Fox Swift'
+            };
+            
+            const settingDescs = {
+                'magical-forest': 'a magical forest filled with glowing trees',
+                'floating-castle': 'a beautiful castle floating high in the clouds',
+                'underwater-city': 'an amazing underwater city with coral palaces',
+                'space-station': 'a fantastic space station among the twinkling stars'
+            };
+            
+            const plotTemplates = {
+                'rescue-mission': 'needed to rescue a lost friend',
+                'treasure-hunt': 'went on an exciting treasure hunt',
+                'friendship-quest': 'set out to make new friends',
+                'learning-journey': 'embarked on a journey to learn new things'
+            };
+            
+            const story = `Once upon a time, ${characterNames[character]} lived in ${settingDescs[setting]}. 
+            
+            One sunny day, ${characterNames[character]} ${plotTemplates[plot]}. Along the way, they met many wonderful creatures and learned important lessons about kindness, courage, and friendship.
+            
+            After many adventures and with the help of new friends, ${characterNames[character]} succeeded in their quest. Everyone celebrated with a big party, and they all lived happily ever after.
+            
+            The End.`;
+            
+            return {
+                title: title,
+                content: story,
+                character: characterNames[character],
+                setting: settingDescs[setting]
+            };
+        }
+        
+        function displayStory(story) {
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('storyDisplayTitle').textContent = story.title;
+            document.getElementById('storyContent').textContent = story.content;
+            document.getElementById('storyDisplay').style.display = 'block';
+        }
+        
+        function readStoryAloud() {
+            if (currentStory && window.voiceManager) {
+                const fullText = `${currentStory.title}. ${currentStory.content}`;
+                window.voiceManager.speak(fullText, { rate: 0.7, pitch: 1.1 });
+            }
+        }
+        
+        function pauseStory() {
+            if (window.voiceManager) {
+                window.voiceManager.pause();
+            }
+        }
+        
+        function stopStory() {
+            if (window.voiceManager) {
+                window.voiceManager.stop();
+            }
+        }
+        
+        function startNewStory() {
+            document.getElementById('storyDisplay').style.display = 'none';
+            document.getElementById('storyForm').style.display = 'grid';
+            
+            // Reset selections
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('storyTitle').value = '';
+            
+            selectedCharacter = null;
+            selectedSetting = null;
+            selectedPlot = null;
+            currentStory = null;
+            
+            updateCreateButton();
+        }
+        
+        // Initialize
+        updateCreateButton();
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Dashboard</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .welcome {
+            font-size: 1.3em;
+            color: #666;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .module-card {
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .module-card:hover {
+            border-color: #4ecdc4;
+            transform: translateY(-5px);
+        }
+        .module-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+        .module-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .module-desc {
+            color: #666;
+            font-size: 1em;
+        }
+        .badges-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .badges-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .badge {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome back, {{ nickname }}! {{ avatar | avatar_emoji }}</h1>
+            <p class="welcome">Ready for another amazing learning adventure?</p>
+        </div>
+        
+        <div class="modules-grid">
+            <div class="module-card" onclick="location.href='/module/colors'">
+                <div class="module-icon">🌈</div>
+                <div class="module-title">Colors</div>
+                <div class="module-desc">Learn about beautiful colors!</div>
+            </div>
+            
+            <div class="module-card" onclick="location.href='/module/shapes'">
+                <div class="module-icon">⭐</div>
+                <div class="module-title">Shapes</div>
+                <div class="module-desc">Discover amazing shapes!</div>
+            </div>
+            
+            <div class="module-card" onclick="location.href='/module/rhymes'">
+                <div class="module-icon">🎵</div>
+                <div class="module-title">Rhymes</div>
+                <div class="module-desc">Sing along with fun rhymes!</div>
+            </div>
+            
+            <div class="module-card" onclick="location.href='/module/stories'">
+                <div class="module-icon">📚</div>
+                <div class="module-title">Stories</div>
+                <div class="module-desc">Read magical stories!</div>
+            </div>
+            
+            <div class="module-card" onclick="location.href='/story-builder'">
+                <div class="module-icon">✨</div>
+                <div class="module-title">Story Builder</div>
+                <div class="module-desc">Create your own stories!</div>
+            </div>
+        </div>
+        
+        {% if badges %}
+        <div class="badges-section">
+            <h2>🏆 Your Badges 🏆</h2>
+            <div class="badges-grid">
+                {% for badge in badges %}
+                <div class="badge">{{ badge[1] }} {{ badge[0] }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
