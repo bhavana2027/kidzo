@@ -1,6 +1,14 @@
-# Overview
+# Kids Learning App - Complete Working Model
 
-This is a comprehensive Kids Learning App built as a web-based prototype using Flask, HTML/CSS/JS, and SQLite. The application provides an engaging educational platform for children featuring personalized learning experiences with avatar buddies, module-based learning (colors, shapes, stories, rhymes), interactive quizzes with badges, parent dashboards for progress monitoring, festival-themed activities, and a creative story builder tool. The app supports bilingual content and real-time co-learning capabilities between parents and children.
+This is a comprehensive Kids Learning App built as a web-based application using Flask, HTML/CSS/JS, and SQLite. The application provides an engaging educational platform for children featuring:
+
+- **Voice-Enhanced Learning**: Web Speech API integration with text-to-speech for all content
+- **Interactive Modules**: Colors, shapes, stories, and rhymes with "Listen" and "Sing Along" features  
+- **Story Builder**: Creative tool for kids to build and narrate their own stories
+- **Avatar Buddies**: Personalized learning companions (cat, dog, rabbit, bear, fox, panda)
+- **Parent Dashboard**: Progress monitoring and account management
+- **Kid-Friendly Design**: Comic Sans font, colorful gradients, emoji-rich interface
+- **Real-time Features**: Socket.IO for parent-child co-learning sessions
 
 # User Preferences
 

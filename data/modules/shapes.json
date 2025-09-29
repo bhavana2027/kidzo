@@ -1,0 +1,77 @@
+{
+  "title": "Shapes",
+  "icon": "⭐",
+  "description": "Discover amazing shapes!",
+  "lessons": [
+    {
+      "id": "circle",
+      "title": "Circle - Round and Round",
+      "type": "shape",
+      "content": {
+        "english": "A circle is perfectly round! It has no corners or edges. You can see circles everywhere around you."
+      },
+      "examples": [
+        {
+          "text": "Round ball",
+          "emoji": "⚽"
+        },
+        {
+          "text": "Bright sun",
+          "emoji": "☀️"
+        },
+        {
+          "text": "Delicious pizza",
+          "emoji": "🍕"
+        }
+      ]
+    },
+    {
+      "id": "square",
+      "title": "Square - Four Equal Sides",
+      "type": "shape",
+      "content": {
+        "english": "A square has four equal sides and four corners. All sides are exactly the same length!"
+      },
+      "examples": [
+        {
+          "text": "Gift box",
+          "emoji": "📦"
+        },
+        {
+          "text": "Window pane",
+          "emoji": "🪟"
+        },
+        {
+          "text": "Cheese slice",
+          "emoji": "🧀"
+        }
+      ]
+    },
+    {
+      "id": "triangle",
+      "title": "Triangle - Three Pointy Corners",
+      "type": "shape",
+      "content": {
+        "english": "A triangle has three sides and three pointy corners. It can be tall, wide, or perfectly balanced!"
+      },
+      "examples": [
+        {
+          "text": "Mountain peak",
+          "emoji": "⛰️"
+        },
+        {
+          "text": "Slice of cake",
+          "emoji": "🍰"
+        },
+        {
+          "text": "Party hat",
+          "emoji": "🎩"
+        }
+      ]
+    }
+  ],
+  "badge": {
+    "name": "Shape Master",
+    "icon": "⭐"
+  }
+}

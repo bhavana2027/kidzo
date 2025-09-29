@@ -1,0 +1,109 @@
+{
+  "characters": [
+    {
+      "id": "brave-knight",
+      "name": {
+        "english": "Sir Brave"
+      },
+      "description": "A courageous warrior with a golden heart",
+      "traits": ["brave", "kind", "helpful"]
+    },
+    {
+      "id": "wise-wizard",
+      "name": {
+        "english": "Wizard Wise"
+      },
+      "description": "A magical spellcaster who loves to learn",
+      "traits": ["intelligent", "magical", "wise"]
+    },
+    {
+      "id": "friendly-dragon",
+      "name": {
+        "english": "Dragon Spark"
+      },
+      "description": "A kind flying friend who breathes sparkles",
+      "traits": ["friendly", "magical", "loyal"]
+    },
+    {
+      "id": "clever-fox",
+      "name": {
+        "english": "Fox Swift"
+      },
+      "description": "A smart woodland friend",
+      "traits": ["clever", "quick", "cunning"]
+    }
+  ],
+  "settings": [
+    {
+      "id": "magical-forest",
+      "name": {
+        "english": "Enchanted Forest"
+      },
+      "description": "A magical forest filled with glowing trees and friendly creatures"
+    },
+    {
+      "id": "floating-castle",
+      "name": {
+        "english": "Cloud Castle"
+      },
+      "description": "A beautiful castle floating high in the clouds"
+    },
+    {
+      "id": "underwater-city",
+      "name": {
+        "english": "Coral Kingdom"
+      },
+      "description": "An amazing underwater city with coral palaces"
+    },
+    {
+      "id": "space-station",
+      "name": {
+        "english": "Star Station"
+      },
+      "description": "A fantastic space station among the twinkling stars"
+    }
+  ],
+  "plot_starters": [
+    {
+      "id": "rescue-mission",
+      "name": "Rescue Mission",
+      "description": "Someone needs help and our hero must save the day",
+      "themes": ["heroism", "friendship", "bravery"]
+    },
+    {
+      "id": "treasure-hunt",
+      "name": "Treasure Hunt",
+      "description": "An exciting adventure to find hidden treasure",
+      "themes": ["adventure", "discovery", "persistence"]
+    },
+    {
+      "id": "friendship-quest",
+      "name": "Friendship Quest",
+      "description": "A journey to make new friends and help others",
+      "themes": ["friendship", "kindness", "sharing"]
+    },
+    {
+      "id": "learning-journey",
+      "name": "Learning Journey",
+      "description": "An adventure to discover new knowledge and skills",
+      "themes": ["learning", "discovery", "growth"]
+    }
+  ],
+  "story_templates": [
+    {
+      "id": "simple_adventure",
+      "name": "Simple Adventure",
+      "structure": "beginning -> challenge -> resolution -> happy_ending"
+    },
+    {
+      "id": "friendship_story",
+      "name": "Friendship Story",
+      "structure": "meeting -> misunderstanding -> helping -> friendship"
+    },
+    {
+      "id": "learning_journey",
+      "name": "Learning Journey",
+      "structure": "curiosity -> exploration -> discovery -> wisdom"
+    }
+  ]
+}

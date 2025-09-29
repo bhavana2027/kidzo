@@ -1,0 +1,44 @@
+{
+  "title": "Stories",
+  "icon": "📚",
+  "description": "Read magical stories!",
+  "lessons": [
+    {
+      "id": "three-bears",
+      "title": "The Three Bears",
+      "type": "story",
+      "content": {
+        "english": "Once upon a time, there were three bears who lived in a cozy house in the forest..."
+      },
+      "story": {
+        "english": "Once upon a time, there were three bears: Papa Bear, Mama Bear, and Baby Bear. They lived in a beautiful house in the forest. One morning, they went for a walk while their porridge cooled down. A little girl named Goldilocks found their house and tried their porridge, chairs, and beds. When the bears came home, they found her sleeping in Baby Bear's bed! Goldilocks woke up, saw the three bears, and ran away as fast as she could. From that day on, she always asked permission before visiting anyone's house. The end!"
+      }
+    },
+    {
+      "id": "little-red",
+      "title": "Little Red Riding Hood",
+      "type": "story",
+      "content": {
+        "english": "A sweet little girl in a red hood goes to visit her grandmother..."
+      },
+      "story": {
+        "english": "Little Red Riding Hood was a kind little girl who lived with her mother. One day, her mother asked her to take some goodies to her grandmother who lived in the forest. 'Stay on the path and don't talk to strangers,' her mother warned. On the way, she met a sly wolf who asked where she was going. The wolf ran ahead to grandmother's house, but a brave woodsman saved the day! Little Red learned to always listen to her mother's advice. Everyone lived happily ever after!"
+      }
+    },
+    {
+      "id": "tortoise-hare",
+      "title": "The Tortoise and the Hare",
+      "type": "story",
+      "content": {
+        "english": "A slow tortoise and a fast hare decide to have a race..."
+      },
+      "story": {
+        "english": "The speedy hare was always bragging about how fast he could run. One day, the slow tortoise challenged him to a race. 'This will be easy!' laughed the hare. When the race began, the hare quickly ran ahead and decided to take a nap. Meanwhile, the tortoise kept moving slowly but steadily. When the hare woke up, he saw the tortoise crossing the finish line! The moral of the story is: slow and steady wins the race!"
+      }
+    }
+  ],
+  "badge": {
+    "name": "Story Lover",
+    "icon": "📚"
+  }
+}
