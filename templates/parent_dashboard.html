@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,36 +13,42 @@
             padding: 20px;
             min-height: 100vh;
         }
+
         .container {
             background: white;
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 1000px;
             margin: 0 auto;
         }
+
         h1 {
             color: #333;
             text-align: center;
             margin-bottom: 30px;
         }
+
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin: 30px 0;
         }
+
         .dashboard-card {
             background: #f8f9fa;
             border-radius: 10px;
             padding: 20px;
             border: 1px solid #dee2e6;
         }
+
         .card-title {
             font-size: 1.3em;
             color: #495057;
             margin-bottom: 15px;
         }
+
         .child-info {
             background: white;
             padding: 15px;
@@ -49,6 +56,7 @@
             margin: 10px 0;
             border-left: 4px solid #28a745;
         }
+
         .logout-btn {
             background: #dc3545;
             color: white;
@@ -58,35 +66,133 @@
             cursor: pointer;
             margin-top: 20px;
         }
+
+        .link-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .link-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .link-form .btn-link {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .link-form .btn-link:hover {
+            background: #218838;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>📊 Parent Dashboard</h1>
-        
+
         <div class="dashboard-grid">
             <div class="dashboard-card">
                 <div class="card-title">👶 Your Children</div>
                 {% if children %}
-                    {% for child in children %}
-                    <div class="child-info">
-                        <strong>{{ child[1] }}</strong> {{ child[2] | avatar_emoji }}<br>
-                        <small>Language: {{ child[3] | title }}</small><br>
-                        <small>Member since: {{ child[4] }}</small>
-                    </div>
-                    {% endfor %}
+                {% for child in children %}
+                <div class="child-info">
+                    <strong>{{ child[1] }}</strong> {{ child[2] | avatar_emoji }}<br>
+                    <small>Language: {{ child[3] | title }}</small><br>
+                    <small>Member since: {{ child[4] }}</small>
+                </div>
+                {% endfor %}
                 {% else %}
-                    <p>No children linked to your account yet.</p>
+                <div class="link-form">
+                    <h3>👶 Link Your Child</h3>
+                    <p>Enter your child's nickname to link their account to yours:</p>
+                    <input type="text" id="child-nickname" placeholder="Child's nickname" required>
+                    <button class="btn-link" onclick="linkChild()">Link Child</button>
+                    <div id="message"></div>
+                </div>
                 {% endif %}
             </div>
-            
+
             <div class="dashboard-card">
                 <div class="card-title">📈 Recent Activity</div>
                 <p>Real-time activity monitoring coming soon!</p>
             </div>
         </div>
-        
+
         <button class="logout-btn" onclick="location.href='/'">Logout</button>
     </div>
+
+    <script>
+        async function linkChild() {
+            const nickname = document.getElementById('child-nickname').value.trim();
+            const messageDiv = document.getElementById('message');
+
+            if (!nickname) {
+                messageDiv.innerHTML = '<div class="message error">Please enter a nickname.</div>';
+                return;
+            }
+
+            try {
+                const response = await fetch('/link-child', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ nickname: nickname })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    messageDiv.innerHTML = '<div class="message success">' + data.message + '</div>';
+                    // Reload page after 2 seconds to show the linked child
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    messageDiv.innerHTML = '<div class="message error">' + (data.error || 'An error occurred.') + '</div>';
+                }
+            } catch (error) {
+                messageDiv.innerHTML = '<div class="message error">Network error. Please try again.</div>';
+            }
+        }
+
+        // Allow pressing Enter to submit
+        document.getElementById('child-nickname').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                linkChild();
+            }
+        });
+    </script>
 </body>
+
 </html>
