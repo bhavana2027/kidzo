@@ -94,3 +94,7 @@ Commit your changes
 
 Open a Pull Request
 
+<img width="779" height="357" alt="Screenshot 2025-10-05 091817" src="https://github.com/user-attachments/assets/f3dcbaa6-fcc6-4d8b-9b2b-ba7fa8776340" />
+<img width="824" height="839" alt="Screenshot 2025-10-05 091844" src="https://github.com/user-attachments/assets/a2008442-e912-4c51-8e2d-1cdc67a7c672" />
+<img width="1302" height="887" alt="Screenshot 2025-10-05 091902" src="https://github.com/user-attachments/assets/be8428cd-709e-4738-8e70-a2baf159f83f" />
+<img width="1316" height="873" alt="Screenshot 2025-10-05 092015" src="https://github.com/user-attachments/assets/ada3331d-997d-48a2-b1bd-6a4f61fe806a" />
